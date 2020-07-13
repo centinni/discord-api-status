@@ -1,0 +1,14 @@
+name: Response time
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+
+jobs:
+  curl:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Get response time
+        run: |
+          DISCORD_API_STATUS_WEBHOOK=${{ secrets.DISCORD_API_STATUS_WEBHOOK }} bash ./response-time.sh
